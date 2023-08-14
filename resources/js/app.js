@@ -41,7 +41,7 @@ const Toast = Swal.mixin({
 Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
 
 Vue.component('insumo-component', require('./components/InsumoComponent.vue').default);
-Vue.component('estudiante-component', require('./components/estudianteComponent.vue').default);
+Vue.component('estudiante-component', require('./components/EstudianteComponent.vue').default);
 Vue.component('informe_medico-component', require('./components/InformeMedicoComponent.vue').default);
 
 
