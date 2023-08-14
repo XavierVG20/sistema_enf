@@ -7225,7 +7225,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/insumo/registrar', data).then(function (response) {
                   me.cerrarModal();
                   Swal.fire('Guardado!', 'El registro ha sido guardado con éxito.', 'success');
-                  me.listarEstudiante(1, '', 'nombre');
+                  me.listarInsumo(1, '', 'nombre');
                   me.errors = {};
                 });
 
@@ -7257,69 +7257,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     importFile: function importFile() {
+      /* Initialize the form data */
+      var me = this;
+      var formData = new FormData();
+      formData.append('file', this.file);
+
+      try {
+        axios.post('/insumo/importarInsumos', formData).then(function (res) {
+          //  console.log(res);
+          me.cerrarModal();
+          Swal.fire('Guardado!', 'Los registros han sido guardados con éxito.', 'success');
+          me.errors = {};
+        });
+      } catch (error) {
+        console.log(error.response.data);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salio mas!",
+          footer: error.response.data.message
+        });
+
+        if (error.response.data) {
+          this.errors = error.response.data.errors;
+        }
+      }
+
+      me.listarInsumo(1, '', 'nombre');
+    },
+    actualizarInsumo: function actualizarInsumo() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var me, formData;
+        var me, data;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                /* Initialize the form data */
                 me = _this3;
-                formData = new FormData();
-                formData.append('file', _this3.file);
-
-                try {
-                  axios.post('/insumo/importarEstudiantes', formData).then(function (res) {
-                    //  console.log(res);
-                    me.cerrarModal();
-                    Swal.fire('Guardado!', 'Los registros han sido guardados con éxito.', 'success');
-                    me.errors = {};
-                  });
-                } catch (error) {
-                  console.log(error.response.data);
-                  Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Algo salio mas!",
-                    footer: error.response.data.message
-                  });
-
-                  if (error.response.data) {
-                    _this3.errors = error.response.data.errors;
-                  }
-                }
-
-                me.listarEstudiante(1, '', 'nombre');
-
-              case 5:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    actualizarInsumo: function actualizarInsumo() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-        var me, data;
-        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                me = _this4;
-                _context5.prev = 1;
+                _context4.prev = 1;
                 data = new FormData(); //Añadimos la imagen seleccionada
 
-                data.append('nombre', _this4.nombre);
-                data.append('descripcion', _this4.descripcion);
-                data.append('unidad', _this4.unidad);
-                data.append('id', _this4.insumo_id);
+                data.append('nombre', _this3.nombre);
+                data.append('descripcion', _this3.descripcion);
+                data.append('unidad', _this3.unidad);
+                data.append('id', _this3.insumo_id);
                 data.append('_method', 'PUT');
-                _context5.next = 10;
+                _context4.next = 10;
                 return axios.post('/insumo/actualizar', data).then(function (response) {
                   console.log(response);
                   me.cerrarModal();
@@ -7329,39 +7313,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 10:
-                _context5.next = 17;
+                _context4.next = 17;
                 break;
 
               case 12:
-                _context5.prev = 12;
-                _context5.t0 = _context5["catch"](1);
-                console.log(_context5.t0);
+                _context4.prev = 12;
+                _context4.t0 = _context4["catch"](1);
+                console.log(_context4.t0);
                 Swal.fire({
                   icon: "error",
                   title: "Oops...",
                   text: "Algo salio mas!",
-                  footer: _context5.t0.response.data.message
+                  footer: _context4.t0.response.data.message
                 });
 
-                if (_context5.t0.response.data) {
-                  _this4.errors = _context5.t0.response.data.errors;
+                if (_context4.t0.response.data) {
+                  _this3.errors = _context4.t0.response.data.errors;
                 }
 
               case 17:
               case "end":
-                return _context5.stop();
+                return _context4.stop();
             }
           }
-        }, _callee5, null, [[1, 12]]);
+        }, _callee4, null, [[1, 12]]);
       }))();
     },
     desactivarInsumo: function desactivarInsumo(id) {
-      var _this5 = this;
+      var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 Swal.fire({
                   title: "Esta seguro de desactivar esta categoría?",
@@ -7374,7 +7358,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   confirmButtonText: "Aceptar"
                 }).then(function (result) {
                   if (result.value) {
-                    var me = _this5;
+                    var me = _this4;
                     axios.put('/insumo/desactivar', {
                       'id': id
                     }).then(function (response) {
@@ -7395,14 +7379,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 1:
               case "end":
-                return _context6.stop();
+                return _context5.stop();
             }
           }
-        }, _callee6);
+        }, _callee5);
       }))();
     },
     activarInsumo: function activarInsumo(id) {
-      var _this6 = this;
+      var _this5 = this;
 
       Swal.fire({
         title: "Esta seguro de activar esta categoría?",
@@ -7414,7 +7398,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         confirmButtonText: "Aceptar"
       }).then(function (result) {
         if (result.value) {
-          var me = _this6;
+          var me = _this5;
           axios.put('/insumo/activar', {
             'id': id
           }).then(function (response) {
@@ -43641,22 +43625,6 @@ var render = function() {
                     }
                   },
                   [_vm._v("Exportar  .XMl")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item ",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.cargarPdf()
-                      }
-                    }
-                  },
-                  [_vm._v("Reportes PDF")]
                 )
               ])
             ])

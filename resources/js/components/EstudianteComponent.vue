@@ -18,7 +18,7 @@
                                 <li><a class="dropdown-item " href="#" @click="abrirModal('estudiante', 'registrar')">Nuevo</a></li>
                                 <li><a class="dropdown-item " href="#" @click="abrirModal('estudiante', 'importar')" >Importar datos </a></li>
                                 <li class="divider"></li>
-                                <li><a class="dropdown-item "  href="#" @click="exportarEstudiantes()">Exportar  .XMl</a></li>
+                                <li><a class="dropdown-item "  href="#" @click="exportarEstudiantes()">Exportar  datos</a></li>
                             </ul>
                         </div>
                 

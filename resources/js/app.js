@@ -40,7 +40,6 @@ const Toast = Swal.mixin({
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
 
-Vue.component('articulo-component', require('./components/ArticuloComponent.vue').default);
 Vue.component('insumo-component', require('./components/InsumoComponent.vue').default);
 Vue.component('estudiante-component', require('./components/estudianteComponent.vue').default);
 Vue.component('informe_medico-component', require('./components/InformeMedicoComponent.vue').default);

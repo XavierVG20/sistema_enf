@@ -18,7 +18,7 @@
                                 <li><a class="dropdown-item " href="#" @click="abrirModal('insumo', 'registrar')">Nuevo</a></li>
                                 <li><a class="dropdown-item " href="#" @click="abrirModal('insumo', 'importar')" >Importar datos </a></li>
                                 <li class="divider"></li>
-                                <li><a class="dropdown-item "  href="#" @click="exportarInsumos()">Exportar  .XMl</a></li>
+                                <li><a class="dropdown-item "  href="#" @click="exportarInsumos()">Exportar  datos</a></li>
                            </ul>
                         </div>
                      <br><br>
@@ -311,7 +311,7 @@ export default {
                         'El registro ha sido guardado con éxito.',
                         'success'
                     );
-                    me.listarEstudiante(1, '', 'nombre');
+                    me.listarInsumo(1, '', 'nombre');
 
                     me.errors = {};
 
@@ -332,14 +332,14 @@ export default {
 
            
         },
-        async importFile() {
+         importFile() {
             /* Initialize the form data */
             let me = this;
             let formData = new FormData();
 
             formData.append('file', this.file);
             try {
-                axios.post('/insumo/importarEstudiantes', formData)
+          axios.post('/insumo/importarInsumos', formData)
                     .then(function (res) {
                         //  console.log(res);
                         me.cerrarModal();
@@ -362,7 +362,7 @@ export default {
                     this.errors = error.response.data.errors;
                 }
             }
-            me.listarEstudiante(1, '', 'nombre');
+            me.listarInsumo(1, '', 'nombre');
 
 
         },
