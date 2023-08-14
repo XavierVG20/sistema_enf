@@ -59,13 +59,12 @@ class EstudianteController extends Controller
         return ['estudiantes' => $estudiantes];
     }
 
-    public function store(EstudianteRequest $request)
+    public function store(Request $request)
     {         
             $estudiante = new Estudiante();
             $estudiante->nombre = $request->nombre;
             $estudiante->curso = $request->curso;
             $estudiante->num_documento = $request->num_documento;
-
             $estudiante->direccion = $request->direccion;
             $estudiante->rep_nombre = $request->rep_nombre;
             $estudiante->rep_documento = $request->rep_documento;

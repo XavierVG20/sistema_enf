@@ -656,9 +656,7 @@ export default {
         },
         registrarVenta() {
            
-            if (this.validarVenta()) {
-                return;
-            }
+           
             let me = this;
 
             axios.post('/informe_medico/registrar', {
